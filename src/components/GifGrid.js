@@ -1,0 +1,31 @@
+import React from 'react'
+import { useFechGifs } from '../hooks/useFechGifs'
+import { GifGridItem } from './GifGridItem';
+
+export const GifGrid = ( {category} ) => {
+
+    const { data:images, loading } =  useFechGifs( category );
+    
+    return (
+        <>
+            <h3 className="animate__animated animate__fadeIn"> {category} </h3>
+            { loading && <p className="animate__fadeOutLeft" >Cargando...</p>}
+            <div className="card-grid" >
+                
+                
+                {
+                    images.map( img => (
+                        <GifGridItem key={img.id} { ...img } />
+                    ))
+                }                
+                
+                
+            </div>
+        </>
+    )
+}
+
+// GifGrid.propTypes = {
+
+// }
+
